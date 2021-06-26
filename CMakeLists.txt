@@ -4,11 +4,12 @@ cmake_minimum_required(VERSION 3.14)
 
 #Create a new project
 project(CubeGame VERSION 1.0.0 
-    #@@TODO replace below with your description
     DESCRIPTION "A simple CMake example project that computes the dot product of two vectors."
     LANGUAGES CXX
 )
 
+#Append modules folder to module path
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/modules/" ${CMAKE_MODULE_PATH})
 
 
 #=====Declare Targets=====
