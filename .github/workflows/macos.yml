@@ -12,6 +12,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # Clone repo
 
+    - name: vcpkg testing
+      run: |
+        vcpkg install sdl2
+        ls ~/.cache
+        ls ~/.cache/vcpkg
+
     - name: Generate build files 
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
