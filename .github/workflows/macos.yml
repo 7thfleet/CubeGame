@@ -12,6 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # Clone repo
 
+    - name: Cache vcpkg
+      id: cache-vcpkg
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/vcpkg
+        key: ${{ runner.os }}-${{ hashFiles('~/.cache/vcpkg') }}
+
     - name: vcpkg testing
       run: |
         vcpkg install sdl2
