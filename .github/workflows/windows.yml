@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # Clone repo
 
+    - name: vcpkg testing
+      run: vcpkg install magnum
+
     - name: Generate build files 
       run: cmake -B ${{github.workspace}}/build
 
