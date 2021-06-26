@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 #Create a new project
-project(MathUtils VERSION 1.0.0 
+project(CubeGame VERSION 1.0.0 
     #@@TODO replace below with your description
     DESCRIPTION "A simple CMake example project that computes the dot product of two vectors."
     LANGUAGES CXX
@@ -13,12 +13,12 @@ project(MathUtils VERSION 1.0.0
 
 #=====Declare Targets=====
 #Create the main library
-add_library(MathUtils)
+add_library(CubeGame)
 
 #Create the main executable
-add_executable(MathUtils-bin)
-#Change the executable output name (by default it would be MathUtils-bin)
-set_target_properties(MathUtils-bin PROPERTIES OUTPUT_NAME MathUtils)
+add_executable(CubeGame-bin)
+#Change the executable output name (by default it would be CubeGame-bin)
+set_target_properties(CubeGame-bin PROPERTIES OUTPUT_NAME CubeGame)
 
 
 
@@ -35,17 +35,17 @@ FetchContent_MakeAvailable(fmt)
 message(STATUS "fmt successfully fetched.")
 
 #Make it a dependency of the executable, and the library.
-target_link_libraries(MathUtils-bin PRIVATE fmt)
-target_link_libraries(MathUtils PRIVATE fmt)
+target_link_libraries(CubeGame-bin PRIVATE fmt)
+target_link_libraries(CubeGame PRIVATE fmt)
 
-#Make MathUtils-bin (our driver) depend on our library (MathUtils)
-target_link_libraries(MathUtils-bin PRIVATE MathUtils)
+#Make CubeGame-bin (our driver) depend on our library (CubeGame)
+target_link_libraries(CubeGame-bin PRIVATE CubeGame)
 
 
 
 #=====Tweak build settings=====
 #Set standard to C++14, require it, and turn off extensions (more portable code). Also make the directory structure more traditional (lib stuff in lib, execs in bin)
-set_target_properties(MathUtils PROPERTIES 
+set_target_properties(CubeGame PROPERTIES 
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED YES
     CXX_EXTENSIONS NO
@@ -54,7 +54,7 @@ set_target_properties(MathUtils PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 
-set_target_properties(MathUtils-bin PROPERTIES
+set_target_properties(CubeGame-bin PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED YES
     CXX_EXTENSIONS NO
@@ -91,15 +91,15 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
         set(compiler_warnings "/permissive;/W4")
     endif()
 
-    target_compile_options(MathUtils PRIVATE ${compiler_warnings})
-    target_compile_options(MathUtils-bin PRIVATE ${compiler_warnings})
+    target_compile_options(CubeGame PRIVATE ${compiler_warnings})
+    target_compile_options(CubeGame-bin PRIVATE ${compiler_warnings})
 endif()
 
 
 #Set the include directory for this library. PUBLIC means this directory is propagated to any targets that link to it.
-target_include_directories(MathUtils
+target_include_directories(CubeGame
     PUBLIC include
-    PRIVATE src/MathUtils #Sometimes you will have utility headers that aren't public, and shouldn't be distributed. These go in the src/MathUtils/ directory
+    PRIVATE src/CubeGame #Sometimes you will have utility headers that aren't public, and shouldn't be distributed. These go in the src/CubeGame/ directory
 )
 
 #Add source directory

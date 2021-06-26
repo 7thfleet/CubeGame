@@ -13,7 +13,7 @@ message(STATUS "doctest successfully fetched.")
 
 
 #Add our two test directories
-add_subdirectory(MathUtils)
+add_subdirectory(CubeGame)
 
 #@@TODO This directory tests directly invoking the executable with command line arguments. It is very possible that you don't need or want this functionality. If so, simply remove the below line and folder it references.
-add_subdirectory(MathUtils-bin)
+add_subdirectory(CubeGame-bin)

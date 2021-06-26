@@ -1,111 +1,105 @@
-# CMake Example
-This is a small project intended to serve as an example/template for CMake projects. It contains about 100 lines of CMake. Read below for instructions on how to use this template for your own project.
+<p align="center"><img width="45%" src="CoolLogo.png"></p>
 
-# How to use this example for your own project.
-This example project is a short application. If you want to use this project as a base for a library only project (no executable), you will have to do more in-depth modifications. I have omitted them to keep this guide short.
+# MathUtils [![Linux (GCC)](https://github.com/7thfleet/CubeGame/actions/workflows/linux.yml/badge.svg)](https://github.com/7thfleet/CubeGame/actions/workflows/linux.yml) [![Windows (MSVC)](https://github.com/7thfleet/CubeGame/actions/workflows/windows.yml/badge.svg)](https://github.com/7thfleet/CubeGame/actions/workflows/windows.yml) [![MacOS (AppleClang)](https://github.com/7thfleet/CubeGame/actions/workflows/macos.yml/badge.svg)](https://github.com/7thfleet/CubeGame/actions/workflows/macos.yml)
 
+(@@TODO: A tldr of your project. Something like:)  
+#### MathUtils is a cross platform @@TODO()-licensed C++14 application & library for generating the dot product of two `std::vector`s.
 
-1. Create a new repository on GitHub. In the steps that follow, replace any occurance of `YourRepo` with your repository name. Replace any occurance of `RepoOwner` with the repository's owner. For example, for this repository, `YourRepo` is `CMake_Example`, and `RepoOwner`, is `7thfleet`. It is also assumed that `YourRepo` is the desired name of the project.
-2. Clone this repository, rename it, and `cd` into it:
-```bash
-git clone https://github.com/7thfleet/CMake_Example.git
-mv CMake_Example YourRepo
-cd YourRepo
+# Table of Contents
+1. [Introduction](#introduction)
+2. [Dependencies](#dependencies)
+3. [Building & Testing](#building_testing)
+    1. [On Boise State's R2](#building_testing_on_r2)
+    2. [On a normal machine](#building_testing_on_a_normal_machine)
+4. [Running](#running)
+5. [Libraries Used](#libraries_used)
+6. [License](#license)
+7. [Contributors](#contributors)
+
+<a name="introduction"></a>
+# Introduction
+(@@TODO A longer description of your awesome project!)
+MathUtils is a simple library and application to show basic CMake functionality.  
+This project uses the Pitchfork project layout.
+
+<a name="dependencies"></a>
+# Dependencies
+* CMake 3.14 or newer
+* A C++14 capable compiler
+* An internet connection (some dependencies are fetched at build time via CMake's `FetchContent`)
+
+<a name="building_testing"></a>
+# Building & Testing
+<a name="building_testing_on_r2"></a>
+## On Boise State's R2
+Load the required modules:  
+```module load cmake gcc```  
+Follow the steps for [on a normal machine](#building_testing_on_a_normal_machine)
+
+<a name="building_testing_on_a_normal_machine"></a>
+## On a normal machine
+Note: Whenever `BUILD_TYPE` is used, replace with `Debug`, `Release`, `RelWithDebInfo`, or `MinSizeRel`.  
+1. ### Clone the repository:   
+```
+git clone git@github.com:7thfleet/CubeGame.git
 ```
 
-3. Delete the `LICENSE` file, and remove all references to CC0:
-```bash
-rm LICENSE
-sed 's/CC0/@@TODO/g' README_TEMPLATE.md -i
-sed 's/public-domain//g' README_TEMPLATE.md -i
+2. ### `cd` into the directory:  
+```
+cd CubeGame
 ```
 
-4. Rename the README template, and update the CI badges:
-```bash
-mv README_TEMPLATE.md README.md
-sed -i 's/7thfleet/RepoOwner/g' README.md
-sed -i 's/CMake_Example/YourRepo/g' README.md
+3. ### Generate the build files:  
 ```
-
-5. Update `CMakeLists.txt` files and a few cpp files, replacing `MathUtils` with `YourRepo`
-```bash
-find . -type f -name "CMakeLists.txt" -exec sed -i 's/MathUtils/YourRepo/g' {} \;
-find . -type f -name "*.*pp" -exec sed -i 's/MathUtils/YourRepo/g' {} \;
-```
-
-6. Rename some folders and files to match the updated `CMakeLists.txt` files:
-```bash
-mv include/MathUtils include/YourRepo
-mv src/MathUtils src/YourRepo
-mv tests/MathUtils/MathUtils.test.cpp tests/MathUtils/YourRepo.test.cpp
-mv tests/MathUtils tests/YourRepo
-mv tests/MathUtils-bin tests/YourRepo-bin
-```
-
-7. At this point you should be able to generate and build the project successfully:
-```bash
 cmake -B build
+```
+
+   - The default build type is Debug. To change it for single-configuration generators (normally everything **but** Xcode and Visual Studio), append the following to the `cmake -S . -B build` command:  
+``` -DCMAKE_BUILD_TYPE=BUILD_TYPE```  
+     To disable building the tests, append ` -DBUILD_TESTING=OFF` to the `cmake -S . -B build` command.
+
+4. ### Build the main executable/library:
+```
 cmake --build build
+```  
+   - For multi-configuration generators(normally **just** Xcode and Visual Studio), the build type can be selected by appending the following to the `cmake --build build` command:
+```--config BUILD_TYPE```  
+
+5. ### Running the tests:  
+For single-configuration generators(normally everything but Xcode and Visual Studio):
 ```
-
-8. Remove the old origin, and point it at your new repository:
-```bash
-git remote remove origin
-git remote add origin https://github.com/RepoOwner/YourRepo.git
-git branch -M main
-git add .
-git commit -m "Init"
-git push -u origin main
+cmake --build build -t test
+```  
+For multi-configuration generators(normally **only** Xcode and Visual Studio):
 ```
+cmake --build build -t RUN_TESTS
+```  
+You may need to select the build type(for multi-configuration generators only). Append `--config BUILD_TYPE`. `BUILD_TYPE` should be the same as used in step #4.  
+Note that the test target does not rebuild anything. As a result, you may want to run `cmake --build build` before running the tests after making changes.
 
-9. Navigate to the repository on GitHub, and verify that the CI begins after a few minutes.
+<a name="running"></a>
+# Running
+After completing the [Building & Testing](#building_testing) steps, the binaries are located in `build/bin/`, and the library and archive files in `build/lib/`. Examples and documentation are provided below. Note if you are using a multi-configuration generator, they are located in `build/bin/BUILD_TYPE/`, and `build/lib/BUILD_TYPE`.
+```
+MathUtils <file1.txt> <file2.txt>
+```
+`file1.txt` and `file2.txt` must be ASCII text files representing the vectors to compute the dot product of. Each line must have one integer, and the files must be the same length(and therefore have the same number of integers). Two sample files are provided in `data/`. For example,
+```
+MathUtils data/one.txt data/two.txt
+```
+Will output `[1, 3, -5] DOT [4, -2, -1] = 3`
 
-10. Go through the README.md and fill revise it to fit your application. Add a LICENSE. I have marked certain places that you should look at with `@@TODO`. You can find them by running this command: `grep -rn "@@TODO"`.
-
-You should now be good to go!
-
-# Adding External Libraries
-If the library uses CMake, and uses it properly, you can use FetchContent, as shown in this example with the fmt and doctest library. If the library doesn't support CMake, the easiest way is to use or write a find module.
-
-# Things this example does **not** do
-* Allow for the project to be used as a dependency(i.e. dedicated library project). About half the work is done, the other half was omitted to keep the size small.
-* Allow for proper system-wide installation using CMake. As with the previous point, this was omitted to keep the project short.
-* Build Doxygen documentation
-* Build hosted documentation
-* Provide support for things like AddressSanitizer, ThreadSanitizer, MemorySanitizer, etc
-
-# Resources used
-* https://github.com/vector-of-bool/pitchfork
-* https://cliutils.gitlab.io/modern-cmake/
-* https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1
-* https://lefticus.gitbooks.io/cpp-best-practices/content/
-
-# Misc Notes
-* The default configuration has a fair amount of warnings enabled by default. You may wish to turn some off if you find them excessive.
-* You might consider enabling -Werror for the CI.
-* For a larger project, consider adding CI features like code coverage checking, input fuzzing, etc.
-* This project has both regular unit tests, and a CMake test that directly invokes the executable and checks its output. If you don't want this, look in the file tests/CMakeLists.txt for instructions.
-
+<a name="libraries_used"></a>
 # Libraries Used
-* [doctest](https://github.com/onqtam/doctest/) is the testing library used here. It is similar to `catch2`, but compiles much faster.
-* [{fmt}](https://github.com/fmtlib/fmt) is a formatting library that is safer and better than C-style printf or C++ style << chevron << hell << . It is the basis for C++20's `std::format`, if that gives it some credibility. Highly recommended.
+* [{fmt}](https://github.com/fmtlib/fmt)
+* [doctest](https://github.com/onqtam/doctest/)
 
-# Recommended Libraries
-You might find these libraries useful, depending on your application.
-* [spdlog](https://github.com/gabime/spdlog) is a good logging library
-* [(Boost) Asio](https://think-async.com/Asio/) is a good networking library. Note it is standalone: you don't need all of Boost to use it.
-* [pybind11](https://github.com/pybind/pybind11) looks like a better solution than SWIG for C++ <--> Python bindings.
-* [nlohmann::json](https://github.com/nlohmann/json) is a very good but hard to spell JSON library.
-* [cereal](http://uscilab.github.io/cereal/) is a clean serialization library.
-* For option parsing, maybe try [cxxopts](https://github.com/jarro2783/cxxopts). I haven't used it before, but hand-rolling your own with `getopt` sucks.
-* For other things, consider browsing [this list](https://en.cppreference.com/w/cpp/links/libs), and checking what people on the [cpp subreddit](https://www.reddit.com/r/cpp) think.
-
+<a name="license"></a>
 # License
-The **code** for this repository and `CoolLogo.png` is CC0/public domain(The libraries used are only fetched during build times. This means the binaries are (probably, I'm not a lawyer) not CC0. Since this is an example project, and no binaries are being distributed, it doesn't matter. CC0/public domain means this code this completely free, you can do anything you want with it. If you would like this code released under a different license (like BSD0 for example), please open an issue.
+The **code** in this repository, as well as the file `CoolLogo.png` are licensed under @@TODO. Note that any distributed binaries or build trees may require a different license, as the two libraries fetched at build time ({fmt} and doctest) are both MIT-licensed. See [LICENSE](LICENSE).
+(@@TODO: The above is a bit more verbose than you need to be, since you'll likely be using a different license, like MIT).
 
-tl;dr you should be able to do whatever you want with this code with no restrictions.
-
-# Author
-This example project was developed by Jared White.
-[LinkedIn](https://www.linkedin.com/in/jared7white/)
-[GitHub](https://www.github.com/7thfleet)
+<a name="contributors"></a>
+# Contributors
+* Add your name here!
+* CMake Base Project: [Jared White](https://linkedin.com/in/jared7white)

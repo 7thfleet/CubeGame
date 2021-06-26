@@ -1,4 +1,4 @@
-#include "MathUtils/DotProduct.hpp"
+#include "CubeGame/DotProduct.hpp"
 
 #include <fmt/format.h>
 
@@ -25,7 +25,7 @@ std::vector<int> readFile(const std::string fileName){
 }
 
 std::string usage = 
-R"(./MathUtils file1 file2
+R"(./CubeGame file1 file2
 Where file1 and fil2 are text files with one vector entry per line. See examples in data/)";
 
 int main(int argc, char* argv[]){
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]){
 
     fmt::print("[{}] DOT ", fmt::join(a, ", "));
     fmt::print("[{}] = ",   fmt::join(b, ", "));
-    fmt::print("{}\n", MathUtils::DotProduct(a, b));
+    fmt::print("{}\n", CubeGame::DotProduct(a, b));
 
     return 0;
 }

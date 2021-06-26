@@ -1,4 +1,4 @@
-add_subdirectory(MathUtils)
-target_sources(MathUtils-bin PRIVATE
+add_subdirectory(CubeGame)
+target_sources(CubeGame-bin PRIVATE
     main.cpp
 )

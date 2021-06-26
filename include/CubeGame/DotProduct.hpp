@@ -4,7 +4,7 @@
 //Keep includes to minimum in header files
 #include <vector>
 
-namespace MathUtils{
+namespace CubeGame{
     /** Computes the dot product of two vectors containing ints.
      * @param a         The first vector
      * @param b         The second vector

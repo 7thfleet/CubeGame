@@ -1,10 +1,10 @@
-#include "MathUtils/DotProduct.hpp"
+#include "CubeGame/DotProduct.hpp"
 
 #include <doctest/doctest.h>
 
 #include <vector>
 
-using namespace MathUtils;
+using namespace CubeGame;
 
 TEST_CASE("DotProduct | Length Validation"){
     std::vector<int> lenThree = {1, 2, 3};

@@ -2,9 +2,9 @@
 
 #We manually create the path to the executable since the target name and OUTPUT_NAME are no longer the same.
 #CMake functions can't return a value, so the first argument is an output variable.
-get_target_property(_test_with_args_runtime_directory MathUtils-bin RUNTIME_OUTPUT_DIRECTORY)
-get_target_property(_test_with_args_output_name MathUtils-bin OUTPUT_NAME)
-add_test(NAME MathUtils-bin_test COMMAND ${_test_with_args_runtime_directory}/${_test_with_args_output_name} ${CMAKE_SOURCE_DIR}/data/one.txt ${CMAKE_SOURCE_DIR}/data/two.txt)
+get_target_property(_test_with_args_runtime_directory CubeGame-bin RUNTIME_OUTPUT_DIRECTORY)
+get_target_property(_test_with_args_output_name CubeGame-bin OUTPUT_NAME)
+add_test(NAME CubeGame-bin_test COMMAND ${_test_with_args_runtime_directory}/${_test_with_args_output_name} ${CMAKE_SOURCE_DIR}/data/one.txt ${CMAKE_SOURCE_DIR}/data/two.txt)
 
 #Escape the brackets
-set_tests_properties(MathUtils-bin_test PROPERTIES PASS_REGULAR_EXPRESSION "\\[1, 3, -5\\] DOT \\[4, -2, -1\\] = 3")
+set_tests_properties(CubeGame-bin_test PROPERTIES PASS_REGULAR_EXPRESSION "\\[1, 3, -5\\] DOT \\[4, -2, -1\\] = 3")
