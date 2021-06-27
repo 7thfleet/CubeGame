@@ -12,13 +12,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # Clone repo
 
-    - name: Find iconv
-      run: find / -name iconv.*
 
-    - name: Install libiconv
-      run: |
-        brew install libiconv
-        echo 'export PATH="/usr/local/opt/libiconv/bin:$PATH"' >> /Users/runner/.bash_profile
+      #- name: Install libiconv
+      #  run: |
+      #    brew install libiconv
+      #    echo 'export PATH="/usr/local/opt/libiconv/bin:$PATH"' >> /Users/runner/.bash_profile
 
     - name: Cache vcpkg
       id: cache-vcpkg
