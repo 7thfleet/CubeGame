@@ -15,9 +15,6 @@ jobs:
     - name: Install OpenGL
       run: sudo apt-get install libgl-dev
 
-    - name: Get location
-      run: vcpkg integrate install
-
     - name: Cache vcpkg
       id: cache-vcpkg
       uses: actions/cache@v2
@@ -26,10 +23,7 @@ jobs:
         key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
         restore-keys: ${{ runner.os }}-vcpkg-
 
-    - name: Install Dependencies with vcpkg
-      run: vcpkg install
-
-    - name: Generate build files 
+    - name: Generate build files & install dependencies
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators
       run: >
         cmake -B ${{github.workspace}}/build
@@ -37,7 +31,10 @@ jobs:
         -DCMAKE_TOOLCHAIN_FILE=/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake
 
     - name: Build project
-      run: cmake --build ${{ github.workspace }}/build --parallel 2
+      run: >
+        cmake
+        --build ${{ github.workspace }}/build
+        --parallel 2
 
     - name: Run tests
       working-directory: ${{ github.workspace }}/build
