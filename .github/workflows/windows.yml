@@ -22,8 +22,8 @@ jobs:
     - name: vcpkg testing
       run: |
         vcpkg install spdlog
-        echo $env:VCPKG_DEFAULT_BINARY_CACHE
         ls $env:APPDATA
+        ls $env:LOCALAPPDATA
 
     - name: Generate build files 
       run: cmake -B ${{github.workspace}}/build
