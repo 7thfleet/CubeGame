@@ -1,16 +1,7 @@
 include(FetchContent)
 
-#Fetch the testing framework from github
-message(STATUS "Fetching content: doctest")
-FetchContent_Declare(
-    doctest
-    GIT_REPOSITORY https://github.com/onqtam/doctest.git
-    GIT_TAG 2.4.6
-)
-
-FetchContent_MakeAvailable(doctest)
-message(STATUS "doctest successfully fetched.")
-
+#Find the doctest package
+#find_package(doctest REQUIRED)
 
 #Add our two test directories
 add_subdirectory(CubeGame)

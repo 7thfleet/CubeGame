@@ -24,20 +24,12 @@ set_target_properties(CubeGame-bin PROPERTIES OUTPUT_NAME CubeGame)
 
 
 #=====Declare Dependencies=====
-#Fetch the fmt library
-include(FetchContent)
-message(STATUS "Fetching content: fmt")
-FetchContent_Declare(
-    fmt
-    GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-    GIT_TAG 7.1.3
-)
-FetchContent_MakeAvailable(fmt)
-message(STATUS "fmt successfully fetched.")
+find_package(fmt REQUIRED)
+find_package(doctest REQUIRED)
 
 #Make it a dependency of the executable, and the library.
-target_link_libraries(CubeGame-bin PRIVATE fmt)
-target_link_libraries(CubeGame PRIVATE fmt)
+target_link_libraries(CubeGame-bin PRIVATE fmt::fmt)
+target_link_libraries(CubeGame PRIVATE fmt::fmt)
 
 #Make CubeGame-bin (our driver) depend on our library (CubeGame)
 target_link_libraries(CubeGame-bin PRIVATE CubeGame)

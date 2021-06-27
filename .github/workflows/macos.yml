@@ -20,6 +20,9 @@ jobs:
         key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
         restore-keys: ${{ runner.os }}-vcpkg-
 
+    - name: Get location
+      run: vcpkg integrate install
+
     - name: Install Dependencies with vcpkg
       run: vcpkg install
 
@@ -28,7 +31,7 @@ jobs:
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
 
     - name: Build project
-      run: cmake --build ${{ github.workspace }}/build
+      run: cmake --build ${{ github.workspace }}/build --parallel 2
 
     - name: Run tests
       working-directory: ${{ github.workspace }}/build

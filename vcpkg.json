@@ -5,6 +5,7 @@
   "dependencies": [
     "magnum",
     "fmt",
+    "doctest",
     "spdlog"
   ]
 }
