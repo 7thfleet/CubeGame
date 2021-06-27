@@ -17,14 +17,12 @@ jobs:
       uses: actions/cache@v2
       with:
         path: C:/Users/runneradmin/AppData/Local/vcpkg
-        #key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}-testing
-        key: ${{ runner.os }}-vcpkg-testing
-        #restore-keys: ${{ runner.os }}-vcpkg-
-    
+        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}-testing
+        #key: ${{ runner.os }}-vcpkg-testing
+        restore-keys: ${{ runner.os }}-vcpkg-
+
     - name: Install Dependencies with vcpkg
-      run: |
-        cd ..
-        vcpkg install fmt
+      run: vcpkg install
 
     - name: Generate build files 
       run: cmake -B ${{github.workspace}}/build
