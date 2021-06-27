@@ -28,7 +28,7 @@ jobs:
 
     - name: Build project
       # The --config option is only used on multi-config generators
-      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build-type }}
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build-type }} --parallel 2
 
     - name: Run tests
       working-directory: ${{ github.workspace }}/build

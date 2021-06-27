@@ -6,3 +6,6 @@ compile_commands.json
 #User CMake files
 .cache/
 CMakeFiles
+
+#vcpkg cache
+vcpkg_installed
