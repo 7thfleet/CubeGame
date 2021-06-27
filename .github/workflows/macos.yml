@@ -16,7 +16,7 @@ jobs:
       id: cache-vcpkg
       uses: actions/cache@v2
       with:
-        path: /Users/runner/.cache/vcpkg
+        path: ~/.cache/vcpkg
         key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
         restore-keys: ${{ runner.os }}-vcpkg-
 
