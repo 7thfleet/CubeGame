@@ -36,7 +36,7 @@ if(APPLE)
         Magnum::Application
         Magnum::GL
         Magnum::Magnum
-        "-framework CoreFoundation -framework Foundation -framework Cocoa -framework CoreServices -framework CoreAudio -framework CoreVideo -framework ForceFeedback -framework IOKit -framework Carbon -framework Metal -framework AudioToolbox"
+        "-framework CoreFoundation -framework Foundation -framework Cocoa -framework CoreServices -framework CoreAudio -framework CoreVideo -framework ForceFeedback -framework IOKit -framework Carbon -framework Metal -framework AudioToolbox -L/usr/local/lib"
     )
 else()
     target_link_libraries(MyApplication PRIVATE
