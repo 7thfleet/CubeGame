@@ -12,12 +12,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # Clone repo
 
+    - name: Install OpenGL
+      run: sudo apt-get install libopengl-dev
+
     - name: Cache vcpkg
       id: cache-vcpkg
       uses: actions/cache@v2
       with:
         path: ~/.cache/vcpkg
-        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
+        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}-testing
         restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: Install Dependencies with vcpkg

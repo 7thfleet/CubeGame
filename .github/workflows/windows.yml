@@ -24,7 +24,6 @@ jobs:
       run: |
         cd ..
         vcpkg install fmt
-        ls /c/users/runneradmin/AppData/Local
 
     - name: Generate build files 
       run: cmake -B ${{github.workspace}}/build
