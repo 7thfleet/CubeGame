@@ -33,6 +33,7 @@ jobs:
         cmake
         --build ${{ github.workspace }}/build
         --parallel 2
+        --verbose
 
     - name: Run tests
       working-directory: ${{ github.workspace }}/build
