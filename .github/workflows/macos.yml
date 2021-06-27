@@ -28,6 +28,9 @@ jobs:
         -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
         -DCMAKE_TOOLCHAIN_FILE=/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake
 
+    - name: find cache location
+        run: vcpkg install
+
     - name: Build project
       run: >
         cmake
