@@ -22,6 +22,7 @@ jobs:
     - name: vcpkg testing
       run: |
         vcpkg install sdl2
+        echo %VCPKG_DEFAULT_BINARY_CACHE%
         ls ~/.cache
         ls ~/.cache/vcpkg
 

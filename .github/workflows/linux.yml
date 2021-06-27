@@ -24,6 +24,7 @@ jobs:
         vcpkg install sdl2
         tree ~/.cache/vcpkg
         echo $VCPKG_ROOT
+        echo $VCPKG_DEFAULT_BINARY_CACHE
 
     - name: Generate build files 
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators
