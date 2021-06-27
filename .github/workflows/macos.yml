@@ -30,8 +30,9 @@ jobs:
 
     - name: Generate build files & install dependencies
       env:
-        LDFLAGS: -L/usr/local/opt/libiconv/lib
-        CPPFLAGS: -I/usr/local/opt/libiconv/include
+        LD_LIBRARY_PATH: /usr/lib
+        LDFLAGS: -L/usr/lib
+        CPPFLAGS: -I/usr/include
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators
       run: >
         cmake
