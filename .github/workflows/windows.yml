@@ -16,10 +16,11 @@ jobs:
       id: cache-vcpkg
       uses: actions/cache@v2
       with:
-        path: C:\Users\runneradmin\AppData\Local\vcpkg
-        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}-testing
-        restore-keys: ${{ runner.os }}-vcpkg-
-
+        path: C:/Users/runneradmin/AppData/Local/vcpkg
+        #key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}-testing
+        key: ${{ runner.os }}-vcpkg-testing
+        #restore-keys: ${{ runner.os }}-vcpkg-
+    
     - name: Install Dependencies with vcpkg
       run: |
         cd ..
