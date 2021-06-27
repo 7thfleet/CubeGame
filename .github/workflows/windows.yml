@@ -21,10 +21,9 @@ jobs:
 
     - name: vcpkg testing
       run: |
-        vcpkg install sdl2
-        Get-Item Env:VCPKG_DEFAULT_BINARY_CACHE
-        Get-Item env:VCPKG_DEFAULT_BINARY_CACHE
-        ls $APPDATA
+        vcpkg install spdlog
+        echo $env:VCPKG_DEFAULT_BINARY_CACHE
+        ls $env:APPDATA
 
     - name: Generate build files 
       run: cmake -B ${{github.workspace}}/build
