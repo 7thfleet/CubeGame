@@ -25,7 +25,8 @@ set_target_properties(CubeGame-bin PROPERTIES OUTPUT_NAME CubeGame)
 
 #=====Declare Dependencies=====
 find_package(fmt REQUIRED)
-find_package(Magnum REQUIRED GL Sdl2Application)
+find_package(Magnum REQUIRED GL Sdl2Application Shaders)
+find_package(Corrade REQUIRED Containers)
 
 set_directory_properties(PROPERTIES CORRADE_USE_PEDANTIC_FLAGS ON)
 
@@ -36,6 +37,8 @@ if(APPLE)
         Magnum::Application
         Magnum::GL
         Magnum::Magnum
+        Magnum::Shaders
+        Corrade::Containers
         "-framework CoreFoundation -framework Foundation -framework Cocoa -framework CoreServices -framework CoreAudio -framework CoreVideo -framework ForceFeedback -framework IOKit -framework Carbon -framework Metal -framework AudioToolbox -liconv"
     )
 else()
@@ -43,6 +46,8 @@ else()
         Magnum::Application
         Magnum::GL
         Magnum::Magnum
+        Magnum::Shaders
+        Corrade::Containers
     )
 endif()
 
