@@ -16,7 +16,7 @@ jobs:
       id: cache-vcpkg
       uses: actions/cache@v2
       with:
-        path: ~/.cache/vcpkg
+        path: /Users/runner/.cache/vcpkg
         key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
         restore-keys: ${{ runner.os }}-vcpkg-
 
@@ -27,9 +27,6 @@ jobs:
         -B ${{github.workspace}}/build
         -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
         -DCMAKE_TOOLCHAIN_FILE=/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake
-
-    - name: find cache location
-      run: vcpkg install
 
     - name: Build project
       run: >
