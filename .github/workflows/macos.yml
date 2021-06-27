@@ -12,12 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # Clone repo
 
-
-      #- name: Install libiconv
-      #  run: |
-      #    brew install libiconv
-      #    echo 'export PATH="/usr/local/opt/libiconv/bin:$PATH"' >> /Users/runner/.bash_profile
-
     - name: Cache vcpkg
       id: cache-vcpkg
       uses: actions/cache@v2
@@ -27,10 +21,6 @@ jobs:
         restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: Generate build files & install dependencies
-      env:
-        LD_LIBRARY_PATH: /usr/lib
-        LDFLAGS: -L/usr/lib
-        CPPFLAGS: -I/usr/include
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators
       run: >
         cmake
