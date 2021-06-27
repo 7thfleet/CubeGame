@@ -16,10 +16,11 @@ jobs:
       id: cache-vcpkg
       uses: actions/cache@v2
       with:
+        path: ~/.cache/vcpkg
         key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
         restore-keys: ${{ runner.os }}-vcpkg-
 
-    - name: vcpkg testing
+    - name: Install Dependencies with vcpkg
       run: vcpkg install
 
     - name: Generate build files 

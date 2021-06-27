@@ -20,11 +20,8 @@ jobs:
         key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
         restore-keys: ${{ runner.os }}-vcpkg-
 
-    - name: vcpkg testing
-      run: |
-        vcpkg install --feature-flags=manifests
-        ls $env:APPDATA
-        ls $env:LOCALAPPDATA
+    - name: Install Dependencies with vcpkg
+      run: vcpkg install
 
     - name: Generate build files 
       run: cmake -B ${{github.workspace}}/build
