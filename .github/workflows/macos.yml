@@ -26,14 +26,15 @@ jobs:
         restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: Generate build files & install dependencies
+      env:
+        LDFLAGS="-L/usr/local/opt/libiconv/lib"
+        CPPFLAGS="-I/usr/local/opt/libiconv/include"
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators
       run: >
         cmake
         -B ${{github.workspace}}/build
         -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
         -DCMAKE_TOOLCHAIN_FILE=/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake
-        -E env LDFLAGS="-L/usr/local/opt/libiconv/lib"
-        -E env CPPFLAGS="-I/usr/local/opt/libiconv/include"
 
     - name: Build project
       run: >
