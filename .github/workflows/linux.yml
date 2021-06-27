@@ -21,7 +21,9 @@ jobs:
         restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: Install Dependencies with vcpkg
-      run: vcpkg install
+      run: |
+        cd ..
+        vcpkg install magnum
 
     - name: Generate build files 
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators

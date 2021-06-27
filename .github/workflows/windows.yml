@@ -21,7 +21,9 @@ jobs:
         restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: Install Dependencies with vcpkg
-      run: vcpkg install
+      run: |
+        vcpkg install
+        ls $env:LOCALAPPDATA
 
     - name: Generate build files 
       run: cmake -B ${{github.workspace}}/build
