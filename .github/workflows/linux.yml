@@ -24,6 +24,10 @@ jobs:
       run: |
         cd ..
         vcpkg install magnum
+    - run: |
+        cat /usr/local/share/vcpkg/buildtrees/magnum/config-x64-linux-dbg-out.log
+        cat /usr/local/share/vcpkg/buildtrees/magnum/config-x64-linux-dbg-err.log
+      if: always()
 
     - name: Generate build files 
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators

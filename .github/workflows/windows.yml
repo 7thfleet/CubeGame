@@ -16,14 +16,15 @@ jobs:
       id: cache-vcpkg
       uses: actions/cache@v2
       with:
-        path: ${{ env.LOCALAPPDATA }}/vcpkg
-        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
+        path: C:\Users\runneradmin\AppData\Local\vcpkg
+        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}-testing
         restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: Install Dependencies with vcpkg
       run: |
-        vcpkg install
-        ls $env:LOCALAPPDATA
+        cd ..
+        vcpkg install fmt
+        ls /c/users/runneradmin/AppData/Local
 
     - name: Generate build files 
       run: cmake -B ${{github.workspace}}/build
