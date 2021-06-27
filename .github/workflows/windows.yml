@@ -16,12 +16,13 @@ jobs:
       id: cache-vcpkg
       uses: actions/cache@v2
       with:
-        path: ~/.cache/vcpkg
-        key: ${{ runner.os }}-${{ hashFiles('~/.cache/vcpkg') }}
+        path: ~/$env:LOCALAPPDATA/vcpkg
+        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
+        restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: vcpkg testing
       run: |
-        vcpkg install spdlog
+        vcpkg install --feature-flags=manifests
         ls $env:APPDATA
         ls $env:LOCALAPPDATA
 
