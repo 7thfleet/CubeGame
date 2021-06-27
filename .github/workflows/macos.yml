@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # Clone repo
 
+    - name: Deactivate libiconv
+      run: sudo port deactivate libiconv
+
     - name: Cache vcpkg
       id: cache-vcpkg
       uses: actions/cache@v2
