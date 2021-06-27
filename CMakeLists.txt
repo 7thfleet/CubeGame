@@ -36,6 +36,10 @@ target_link_libraries(MyApplication PRIVATE
     Magnum::Magnum
 )
 
+if(APPLE)
+    target_link_libraries(MyApplication "-framework CoreFoundation -framework Foundation -framework Cocoa")
+endif()
+
 #Make it a dependency of the executable, and the library.
 target_link_libraries(CubeGame-bin PRIVATE fmt::fmt)
 target_link_libraries(CubeGame PRIVATE fmt::fmt)
