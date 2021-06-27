@@ -1,7 +1,7 @@
 include(FetchContent)
 
 #Find the doctest package
-#find_package(doctest REQUIRED)
+find_package(doctest REQUIRED)
 
 #Add our two test directories
 add_subdirectory(CubeGame)
