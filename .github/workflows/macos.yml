@@ -32,6 +32,8 @@ jobs:
         -B ${{github.workspace}}/build
         -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
         -DCMAKE_TOOLCHAIN_FILE=/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake
+        -E env LDFLAGS="-L/usr/local/opt/libiconv/lib"
+        -E env CPPFLAGS="-I/usr/local/opt/libiconv/include"
 
     - name: Build project
       run: >
