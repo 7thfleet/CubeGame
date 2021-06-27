@@ -38,7 +38,7 @@ if(APPLE)
         Magnum::Magnum
         "-framework CoreFoundation -framework Foundation -framework Cocoa -framework CoreServices -framework CoreAudio -framework CoreVideo -framework ForceFeedback -framework IOKit -framework Carbon -framework Metal -framework AudioToolbox"
     )
-elseif()
+else()
     target_link_libraries(MyApplication PRIVATE
         Magnum::Application
         Magnum::GL
