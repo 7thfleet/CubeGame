@@ -20,17 +20,11 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.cache/vcpkg
-        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}-testing2
-          #restore-keys: ${{ runner.os }}-vcpkg-
+        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
+        #restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: Install Dependencies with vcpkg
-      run: |
-        cd ..
-        vcpkg install magnum
-    - run: |
-        cat /usr/local/share/vcpkg/buildtrees/magnum/config-x64-linux-dbg-out.log
-        cat /usr/local/share/vcpkg/buildtrees/magnum/config-x64-linux-dbg-err.log
-      if: always()
+      run: vcpkg install
 
     - name: Generate build files 
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators
