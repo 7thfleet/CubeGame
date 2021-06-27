@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "cubegame",
+  "version-string": "0.00.1",
+  "dependencies": [
+    "magnum",
+    "fmt",
+    "spdlog"
+  ]
+}
+

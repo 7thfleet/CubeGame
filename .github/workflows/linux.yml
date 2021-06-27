@@ -16,15 +16,11 @@ jobs:
       id: cache-vcpkg
       uses: actions/cache@v2
       with:
-        path: ~/.cache/vcpkg
-        key: ${{ runner.os }}-${{ hashFiles('~/.cache/vcpkg') }}
+        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
+        restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: vcpkg testing
-      run: |
-        vcpkg install sdl2
-        tree ~/.cache/vcpkg
-        echo $VCPKG_ROOT
-        echo $VCPKG_DEFAULT_BINARY_CACHE
+      run: vcpkg install
 
     - name: Generate build files 
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators
