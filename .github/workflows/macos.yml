@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # Clone repo
 
+    - name: Find iconv
+      run: find / -name iconv.*
+
     - name: Install libiconv
       run: |
         brew install libiconv
