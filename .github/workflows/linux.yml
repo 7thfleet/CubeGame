@@ -21,7 +21,7 @@ jobs:
       with:
         path: ~/.cache/vcpkg
         key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
-        #restore-keys: ${{ runner.os }}-vcpkg-
+        restore-keys: ${{ runner.os }}-vcpkg-
 
     - name: Install Dependencies with vcpkg
       run: vcpkg install
