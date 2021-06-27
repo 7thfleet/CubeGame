@@ -28,7 +28,10 @@ jobs:
 
     - name: Generate build files 
       # The -DCMAKE_BUILD_TYPE variable only matters to single-config generators
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
+      run: >
+        cmake -B ${{github.workspace}}/build
+        -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
+        -DCMAKE_TOOLCHAIN_FILE=/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake
 
     - name: Build project
       run: cmake --build ${{ github.workspace }}/build --parallel 2

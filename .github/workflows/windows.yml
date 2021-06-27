@@ -27,7 +27,7 @@ jobs:
       run: vcpkg install
 
     - name: Generate build files 
-      run: cmake -B ${{github.workspace}}/build
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
 
     - name: Build project
       # The --config option is only used on multi-config generators
